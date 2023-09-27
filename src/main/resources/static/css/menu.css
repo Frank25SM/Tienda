@@ -1,0 +1,49 @@
+
+*{
+    margin: 0;
+    box-sizing: border-box;
+    
+}
+
+body{
+    font-family: sans-serif;
+    padding: 45px 20px 0px;
+}
+
+.header{
+    background-color: navy;
+    height: 12%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    position: fixed;
+}
+
+.nav{
+    display: flex;
+    justify-content: space-between;
+    max-width: 990px;
+    margin: 0 auto;
+}
+
+.nav-link{
+    color: pink;
+    text-decoration: none;
+}
+
+.logo{
+    color: orange;
+    font-size: 35px;
+    font-weight: bold;
+    padding: 0 40px;
+    line-height: 90px;
+}
+
+.footer{
+    background-color: navy;
+    height: 12%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    position: fixed;
+}
