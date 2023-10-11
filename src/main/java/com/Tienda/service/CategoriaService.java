@@ -1,0 +1,14 @@
+
+package com.Tienda.service;
+
+import com.Tienda.domain.Categoria;
+import java.util.List;
+
+/**
+ *
+ * @author fsanchezm
+ */
+public interface CategoriaService {
+    public List<Categoria> getCategorias(boolean activos);
+    public Categoria getCategoria(Categoria categoria);
+}
