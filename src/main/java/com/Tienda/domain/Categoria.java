@@ -5,7 +5,10 @@ package com.Tienda.domain;
 import jakarta.persistence.*
  */
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.io.Serializable;
@@ -21,6 +24,8 @@ import lombok.Data;
 public class Categoria implements Serializable{
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_categoria")
     private Long idCategoria; //Esto lo transforma en id_categoria por el CameleCase pues después de cada palabra el CameleCase pone un guión bajo después de cada palabra.. 
     private String descripcion;
     private String rutaImagen;
