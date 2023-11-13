@@ -81,6 +81,7 @@
                                             <th></th></tr>
                                     </thead>
                                     <tbody>
+                                        <!--El atributo categoria hace referencia al atributo cargado en el model.addAttribute en el controller.-->
                                         <tr th:each="categoria, contador : ${categorias}">
                                             <td>[[${contador.count}]]</td>
                                             <td>[[${categoria.descripcion}]]</td>
@@ -99,7 +100,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                   <!--Muestra un cuadro con el texto Total Cateogorías y la suma.-->
+                   <div class="col-md-3">
                         <div class="card text-center bg-success text-white mb-3">
                             <div class="card-body">
                                 <h3>[[#{categoria.total}]]</h3>
@@ -123,7 +125,7 @@
                           enctype="multipart/form-data">
                         <input type="hidden" name="idCategoria" th:field="*{idCategoria}"/>
                         <input type="hidden" name="rutaImagen" th:field="*{rutaImagen}"/>
-                        <section th:replace="~{categoria/fragmentosCategoria :: botonesEditar}"/>
+                        <section th:replace="~{categoria/fragmentos :: botonesEditar}"/>
                         <div id=details>
                             <div class="container">
                                 <div class="row">

@@ -13,26 +13,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-/**
- *
- * @author fsanchezm
- */
+
 @Controller
 @RequestMapping("/categoria")
 public class CategoriaController {
     
-    @Autowired
+    @Autowired 
     private CategoriaService categoriaService;
     
     @GetMapping("/listado")
+    //El model permite ser utilizado como un transporte entre el controlador y la vista 
     public String inicio(Model model) {
         List<Categoria> listadoCategorias = categoriaService.getCategorias(false);
+        //En un metodo no se puede incluir atributos con el mismo nombre, pues cada uno es un identificador.
         model.addAttribute("categorias", listadoCategorias);
         model.addAttribute("totalCategorias", listadoCategorias.size());
         return "/categoria/listado";
     }
     
-     @GetMapping("/nuevo")
+    @GetMapping("/nuevo")
     public String categoriaNuevo(Categoria categoria) {
         return "/categoria/modifica";
     }

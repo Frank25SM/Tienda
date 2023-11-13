@@ -10,18 +10,18 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.io.Serializable;
+import java.util.List;
 import lombok.Data;
 
-/**
- *
- * @author fsanchezm
- */
+
 @Data //Sirve para la creación automática de los SET y GET de los atributos
 @Entity
-@Table(name = "categoria")
-public class Categoria implements Serializable{
+@Table(name = "categoria") //Se especifica la tabla en BD a la que se va a conectar
+public class Categoria implements Serializable{ //La interfaz Serializable permite que la entidad Categoria se transforme información que se pueda guardar en la BD 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,6 +31,9 @@ public class Categoria implements Serializable{
     private String rutaImagen;
     private boolean activo;
     
+//    @OneToMany 
+//    @JoinColumn(name = "id_categoria")
+//    List<Producto> productos;
     
     public Categoria(){} 
 

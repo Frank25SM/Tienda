@@ -6,20 +6,26 @@
     <head th:fragment="head">
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
+        <!--Referencia al CSS de Bootstrap-->
         <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+        <!--Referencia al CSS de font-awesome-->
         <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet"/>
+        <!--Referencia al Javascript de jquery-->
         <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <!--Referencia al Javascript de popper-->
         <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+        <!--Referencia al Javascript de bootstrap-->
         <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
         <script th:src="@{/js/rutinas.js}"></script>
     </head>
     
     <body>
-        <header th:fragment="header" class="header">
-            
+        <header th:fragment="header" class="header">  
+            <!--Menú-->
             <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">                
                 <div class="container">
-                    <a th:href="@{/}" class="navbar-brand">[[#{aplicacion.titulo}]]</a>                    
+                    <a th:href="@{/}" class="navbar-brand">[[#{aplicacion.titulo}]]</a> 
+                    <!--Esto lo que permite es cambiar el tamaño del menú a un menú de hamburguesa, dependiendo el tamaño de la pantalla.-->
                     <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                         <span class="navbar-toggler-icon"></span>
                     </button>               
@@ -30,6 +36,7 @@
                             <li class="nav-item px-2"><a class="nav-link" th:href="@{/usuario/listado}">[[#{plantilla.usuarios}]]</a></li>
                         </ul>
                         <ul class="navbar-nav">
+                            <!--Muestra un menú deplegable que cambia de lenguaje la página en la que se encuentre.-->
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Lang</a>
                                 <ul class="dropdown-menu dropdown-menu-dark">
@@ -41,7 +48,7 @@
                     </div>                    
                 </div>                
             </nav>
-            
+
             <section id="main-header" class="py-2 bg-success text-white">
                 <div class="container">
                     <div class="row">
@@ -51,9 +58,8 @@
                     </div>
                 </div>
             </section>
-            
-        </header>
-        
+        </header>    
+       
         <footer th:fragment="footer" class="bg-info text-white mt-5 p-2">
             <div class="container">
                 <div class="col">
