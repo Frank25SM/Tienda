@@ -192,7 +192,8 @@
 
                                              <div class="mb-3">
                                                  <label for="detalle">[[#{producto.detalle}]]</label>
-                                                 <input type="text" class="form-control" name="detalle" th:field="*{detalle}" required="true"/>
+                                                 <textArea class="form-control" name="detalle" th:field="*{detalle}" required="true" rows="6"></textarea>
+                                             <!--<input type="text" class="form-control" name="detalle" th:field="*{detalle}" required="true"/>-->
                                              </div>
 
                                              <div class="mb-3">
@@ -225,6 +226,7 @@
                                      </div>
                                  </div>
                              </div>
+                         </div>
                      </form>
                  </div>
              </div>
