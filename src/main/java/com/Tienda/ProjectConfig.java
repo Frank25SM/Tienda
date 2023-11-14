@@ -12,7 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
-
+//Solo para prueba de replicación
 @Configuration //Definición de clase configuración
 public class ProjectConfig implements WebMvcConfigurer{
     // Estos metodos son para la implementación para la internacionalización
