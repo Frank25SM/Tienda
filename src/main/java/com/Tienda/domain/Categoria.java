@@ -31,9 +31,9 @@ public class Categoria implements Serializable{ //La interfaz Serializable permi
     private String rutaImagen;
     private boolean activo;
     
-//    @OneToMany 
-//    @JoinColumn(name = "id_categoria")
-//    List<Producto> productos;
+    @OneToMany 
+    @JoinColumn(name = "id_categoria", insertable = false, updatable = false) //Esto no va a hacer insert ni update en la tabla Producto
+    List<Producto> productos;//Lista de tipo Productos
     
     public Categoria(){} 
 

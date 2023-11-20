@@ -2,6 +2,7 @@
 package com.Tienda.controller;
 
 import com.Tienda.domain.Producto;
+import com.Tienda.domain.Categoria;
 import com.Tienda.service.CategoriaService;
 import com.Tienda.service.ProductoService;
 import com.Tienda.service.impl.FirebaseStorageServiceImpl;
@@ -23,25 +24,20 @@ public class ProductoController {
     @Autowired
     private ProductoService productoService;
 
-//    @Autowired
-//    private CategoriaService categoriaService;
+    @Autowired
+    private CategoriaService categoriaService; //Con esto se puede obetener los metodos de services de consultar datos de BD
     
     //Esto es por si tiene un elemento de imagen dde donde se requiere accesar al repositorio
     @Autowired
     private FirebaseStorageServiceImpl firebaseStorageService;
     
     @GetMapping("/listado")
-    public String inicio(Model model) {
-       
-//        var productos = productoService.getProductos(false);
-//        var categorias = categoriaService.getCategorias(true);    
-//        model.addAttribute("productos", productos);
-//        model.addAttribute("totalProductos", productos.size());
-//        model.addAttribute("categorias", categorias);
-          List<Producto> listadoProductos = productoService.getProductos(false);          
+    public String inicio(Model model) {       
+          List<Producto> listadoProductos = productoService.getProductos(false);   
+          List<Categoria> categorias = categoriaService.getCategorias(true);
           model.addAttribute("productos", listadoProductos);
           model.addAttribute("totalProductos", listadoProductos.size());
-          //model.addAttribute("categorias", listadoProductos);
+          model.addAttribute("categorias", categorias);
         return "/producto/listado";
     }
     
@@ -75,10 +71,21 @@ public class ProductoController {
     @GetMapping("/modificar/{idProducto}")
     public String productoModificar(Producto producto, Model model) {
         producto = productoService.getProducto(producto);
-        //var categorias = categoriaService.getCategorias(true);    
-        //model.addAttribute("categorias", categorias);
+        List<Categoria> categorias = categoriaService.getCategorias(true);                
         model.addAttribute("producto", producto);
+        model.addAttribute("categorias", categorias);
         return "/producto/modifica";
     }
-   
+    
+    @PostMapping("/query3")
+    public String consultaQuery3(@RequestParam(value = "precioInf") double precioInf,
+            @RequestParam(value = "precioSup") double precioSup, Model model) {
+        var productos = productoService.metodoNativo(precioInf, precioSup);
+        model.addAttribute("productos", productos);
+        model.addAttribute("totalProductos", productos.size());
+        model.addAttribute("precioInf", precioInf);
+        model.addAttribute("precioSup", precioSup);
+        return "/pruebas/listado2";
+    }
+    
 }

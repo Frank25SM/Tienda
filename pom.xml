@@ -82,7 +82,17 @@
                     <groupId>com.google.firebase</groupId>
                     <artifactId>firebase-admin</artifactId>
                     <version>9.1.1</version>
-                </dependency>  
+                </dependency>
+                <!--Esta dependencia crea una pantalla de login para asegurar el acceso-->
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-security</artifactId>
+                </dependency>
+                <!--Esta dependencia permite hacer una validación sobre una acción en un control, va mostrar controles condicionado por roles-->
+                <dependency>
+                    <groupId>org.thymeleaf.extras</groupId>
+                    <artifactId>thymeleaf-extras-springsecurity6</artifactId>
+                </dependency>
 	</dependencies>
 
 	<build>

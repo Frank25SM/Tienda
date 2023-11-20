@@ -20,4 +20,7 @@ public interface CategoriaService {
     
     //Se elimina el registro de categoría que incluya el ID
     public void delete(Categoria categoria);
+    
+    
+    public List<Categoria> getCategoriasPorDescripcion(String descripcion);
 }

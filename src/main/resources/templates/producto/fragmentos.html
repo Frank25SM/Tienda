@@ -6,6 +6,8 @@
         <title>TechShop</title>
     </head>
     
+    
+    
     <body>
          <!-- 1 Sección para crear el boton de agregar... llamará a una ventana modal-->
         <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
@@ -24,7 +26,7 @@
             </div>
         </section>
          
-         <!-- 2 Fragmento para agregar producto, es la ventana modal -->
+         <!-- 2 Fragmento que muestra un formulario para agregar producto, es la ventana modal -->
         <section th:fragment="agregarProducto">
             <div id="agregarProducto" 
                  class="modal fade" 
@@ -44,7 +46,10 @@
                             <div class="modal-body">
                                 <div class="mb-3">
                                     <label for="idCategoria">[[#{producto.categoria}]]</label>
-                                    <input type="number" class="form-control" name="idCategoria" required="true"/>
+                                    <select name="categoria.idCategria" class="form-control">
+                                        <!--Cada elemento de categorias se va a llamar "item"-->
+                                        <option th:each="item : ${categorias}" th:value="${item.idCategoria}">[[${item.descripcion}]]</option>                                         
+                                    </select>
                                 </div>
                                 
                                 <div class="mb-3">
@@ -88,41 +93,37 @@
             </div>
         </section>
 
-         <!-- 3 Sección principal para mostrar la informaccion de la entidad producto -->​
+         <!-- 3 Sección principal que muestra un formulario con la informaccion de la entidad producto -->​
          <section th:fragment="listadoProductos" id="productos">​
              <div class="container">​
                  <div class="row">​
                      <div class="col-md-10">​
                          <div class="card">​
                              <div class="card-header">​
+                            <!--Mensaje para el titulo de la tabla-->
                                  <h4>[[#{producto.listado}]]</h4></div>​
                              <div th:if="${productos != null and !productos.empty}" >​
                                  <table class="table table-striped table-hover fs-6">​
                                      <thead class="table-dark">​
+                                         <!--Mensajes para los titulo de las columnas-->
                                          <tr><th>#</th>​
                                              <th>[[#{producto.descripcion}]]</th>​
-                                             <!--<th class="text-center">[[#{producto.detalle}]]</th>​​-->
                                              <th>[[#{producto.precio}]]</th>​
-                                             <th>[[#{producto.existencias}]]</th>​
-                                             <!--<th class="text-center">[[#{producto.total}]]</th>​-->
+                                             <th>[[#{producto.existencias}]]</th>​                                             
                                              <th class="text-center">[[#{producto.activo}]]</th>​
                                              <th class="text-center">[[#{producto.categoria}]]</th>​
                                              <th></th><th></th></tr>​
                                      </thead>​
-
+                                                                          
                                      <tbody>​
-                                         <tr th:each="producto, contador : ${productos}">​
-                                             <!--Datos del modelo(domain)-->
+                                         <!--<!-- Se mandan a traer los valores del Modelo -->
+                                         <tr th:each="producto, contador : ${productos}">​                                             
                                              <td class="text-center">[[${contador.count}]]</td>​
                                              <td class="fs-6">[[${producto.descripcion}]]</td>​
-                                             <!--<td class="fs-6">[[${producto.detalle}]]</td>​-->
                                              <td class="fs-6">[[${producto.precio}]]</td>​
                                              <td class="fs-6">[[${producto.existencias}]]</td>​
                                              <td class="text-center" th:text="${producto.activo} ? 'Activa' : 'Inactiva'"/>​
-                                             <td class="text-center">[[${producto.idCategoria}]]</td>​
-                                             <!--<td class="text-end">[[${#numbers.formatDecimal(producto.precio, 1, 'DEFAULT', 2, 'DEFAULT')}]]</td>​
-                                                 <td class="text-center">[[${producto.existencias}]]</td>​
-                                                 <td class="text-end">[[${#numbers.formatDecimal(producto.precio*producto.existencias, 1, 'DEFAULT', 2, 'DEFAULT')}]]</td>​-->
+                                             <td class="text-center">[[${producto.categoria.descripcion}]]</td>​
                                              <td>
                                                  <a th:href="@{/producto/eliminar/}+${producto.idProducto}"​
                                                     class="btn btn-danger">​
@@ -157,7 +158,7 @@
              </div>​
          </section>​
 
-         <!-- 4 Fragmento que se utiliza en la página modifca.html -->
+         <!-- 4 Fragmento que muestra un formulario que se utiliza para modificar una entidad producto modifca.html-->
          <section th:fragment="editarProducto">
              <div class="row">
                  <div class="col-md-2"></div>
@@ -179,14 +180,12 @@
                                              <div class="card-header">
                                                  <h4>[[#{accion.actualizar}]]</h4>
                                              </div>
-
+                                            <!--Se muestra un formulario con los campos para modificar la entidad de producto, que llama al metodo /modificar en el ProductoController-->
                                              <div class="mb-3">
                                                  <label for="idCategoria">[[#{producto.categoria}]]</label>
-                                                 <input type="number" 
-                                                        class="form-control" 
-                                                        name="idCategoria" 
-                                                        th:field="*{idCategoria}" 
-                                                        required="true"/>
+                                                 <select name="categoria.idCategoria" th:field="*{categoria.idCategoria}" class="form-control">
+                                                     <option th:each="item : ${categorias}" th:value="${item.idCategoria}">[[${item.descripcion}]]</option>                                         
+                                                 </select>
                                              </div>
 
                                              <div class="mb-3">
@@ -250,7 +249,7 @@
              </div>
          </section>
 
-         <!-- 5 Fragmento que se utiliza en el fragmento anterior -->
+         <!-- 5 Fragmento que muestra 3 botones que se utiliza para ejecutar acciones (Regresar, Eliminar y Guardar)-->
          <section th:fragment="botonesEditar">
              <div class="container py-4 mb-4 bg-light">
                  <div class="row">

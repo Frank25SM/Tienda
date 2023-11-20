@@ -25,6 +25,7 @@ public class CategoriaController {
     //El model permite ser utilizado como un transporte entre el controlador y la vista 
     public String inicio(Model model) {
         List<Categoria> listadoCategorias = categoriaService.getCategorias(false);
+        //List<Categoria> listadoCategorias = categoriaService.getCategoriasPorDescripcion("tablet"); (Este metodo trae las categorias con un texto quemado que en este caso es "tablet") 
         //En un metodo no se puede incluir atributos con el mismo nombre, pues cada uno es un identificador.
         model.addAttribute("categorias", listadoCategorias);
         model.addAttribute("totalCategorias", listadoCategorias.size());
