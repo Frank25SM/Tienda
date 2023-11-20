@@ -23,8 +23,8 @@ public class Producto implements Serializable{
     private boolean activo;
 
 //    @ManyToOne​ //Muchos productos pueden tener una categoría
-//    @JoinColumn(name="id_categoria")//Indicar con cual campo de nuestra tabla en BD se relaciona
-//    Categoria categoria; //objeto de tipo Categoria
+//    @JoinColumn(name="id_categoria")//Indicar con cual campo de la tabla Categoría se va a relacionar Producto
+//    private Categoria categoria; //objeto de tipo Categoria
 
     public Producto() {
     }

@@ -182,23 +182,39 @@
 
                                              <div class="mb-3">
                                                  <label for="idCategoria">[[#{producto.categoria}]]</label>
-                                                 <input type="number" class="form-control" name="idCategoria" th:field="*{idCategoria}" required="true"/>
+                                                 <input type="number" 
+                                                        class="form-control" 
+                                                        name="idCategoria" 
+                                                        th:field="*{idCategoria}" 
+                                                        required="true"/>
                                              </div>
 
                                              <div class="mb-3">
                                                  <label for="descripcion">[[#{producto.descripcion}]]</label>
-                                                 <input type="text" class="form-control" name="descripcion" th:field="*{descripcion}" required="true"/>
+                                                 <input type="text" 
+                                                        class="form-control" 
+                                                        name="descripcion" 
+                                                        th:field="*{descripcion}" 
+                                                        required="true"/>
                                              </div>
 
                                              <div class="mb-3">
                                                  <label for="detalle">[[#{producto.detalle}]]</label>
-                                                 <textArea class="form-control" name="detalle" th:field="*{detalle}" required="true" rows="6"></textarea>
+                                                 <textArea class="form-control" 
+                                                           name="detalle" 
+                                                           th:field="*{detalle}" 
+                                                           required="true" 
+                                                           rows="6"></textarea>
                                              <!--<input type="text" class="form-control" name="detalle" th:field="*{detalle}" required="true"/>-->
                                              </div>
 
                                              <div class="mb-3">
                                                  <label for="precio">[[#{producto.precio}]]</label>
-                                                 <input type="text" class="form-control" name="precio" th:field="*{precio}" required="true"/>
+                                                 <input type="text" 
+                                                        class="form-control" 
+                                                        name="precio" 
+                                                        th:field="*{precio}" 
+                                                        required="true"/>
                                              </div>
 
                                              <div class="mb-3">
@@ -217,7 +233,9 @@
                                                  </div>
                                                  <div class="mb-3">
                                                      <label for="imagen">[[#{producto.rutaImagen}]]</label>
-                                                     <input class="form-control" type="file" name="imagenFile"
+                                                     <input class="form-control" 
+                                                            type="file" 
+                                                            name="imagenFile"
                                                             onchange="readURL(this);" />
                                                      <img id="blah" th:src="@{${producto.rutaImagen}}" alt="your image" height="200"/>
                                                  </div>
