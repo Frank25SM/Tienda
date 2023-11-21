@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" 
-      xmlns:th="http://www.thymeleaf.org">
-    
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+      <!--La linea de arriba permite utilizar el namespace de sec a nivel de nuestras vistas-->
+      
     <head th:fragment="head">
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
@@ -30,12 +32,12 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>               
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                        <!--Muestra las opciones de menú-->
-                        <ul class="navbar-nav">
+                        <!--Muestra las opciones de menú.... El sec:authorize define las secciones que se mostrarán según el tipo de rol que se tenga-->
+                        <ul class="navbar-nav" sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_VENDEDOR')">
                             <li class="nav-item px-2"><a class="nav-link" th:href="@{/categoria/listado}">[[#{plantilla.categorias}]]</a></li>
                             <li class="nav-item px-2"><a class="nav-link" th:href="@{/producto/listado}">[[#{plantilla.productos}]]</a></li>
                             <li class="nav-item px-2"><a class="nav-link" th:href="@{/usuario/listado}">[[#{plantilla.usuarios}]]</a></li>
-                            <li class="nav-item dropdown">
+                            <li class="nav-item dropdown" sec:authorize="hasRole('ROLE_ADMIN')">
                                 <a class="nav-link dropdown-toggle" 
                                    data-bs-toggle="dropdown" 
                                    href="#" 
@@ -61,7 +63,35 @@
                                     <li><a class="dropdown-item" th:href="@{/(lang=en)}">EN</a></li>
                                 </ul>
                             </li>
-                        </ul>                        
+                        </ul> 
+                        
+                         <!--Este fragmento de código muestra un botón de logueo cuando el usuario no está logueado y manda a llamar a la página login-->
+                         <ul class="navbar-nav" sec:authorize="!isAuthenticated()">
+                             <li class="nav-item">
+                                <a href="@{/login}" class="nav-link">
+                                    <i class="fa fa-sign-in-alt"></i>
+                                </a>
+                            </li>
+                        </ul> 
+                        
+                         <ul class="navbar-nav" sec:authorize="isAuthenticated()">
+                             <li class="nav-item text-white my-auto">                                
+                                 <i class="fa fa-user mx-1"></i><span sec:authentication="name">Username</span>
+                            </li>
+
+                             <li class="nav-item text-white my-auto">                                
+                                 <i class="fa fa-users mx-1"></i><span sec:authentication="principal.authorities">Roles</span>
+                             </li>
+                             
+                             <li class="nav-item text-white my-auto">                                
+                                 <form method="POST" th:action="@{/logout}">
+                                     <button class="btn btn-dark">
+                                         <i class="fa fa-sign-out-alt"></i>
+                                     </button>
+                                 </form>
+                             </li>
+                        </ul> 
+                         
                     </div>                    
                 </div>                
             </nav>
