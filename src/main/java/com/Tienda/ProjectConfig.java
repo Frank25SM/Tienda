@@ -1,7 +1,6 @@
 
 package com.Tienda;
 
-import com.Tienda.service.UsuarioService;
 import java.util.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -22,6 +21,7 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
+import com.Tienda.service.UsuarioDetailsService;
 
 //Solo para prueba de replicación
 @Configuration //Definición de clase configuración
@@ -106,7 +106,7 @@ public class ProjectConfig implements WebMvcConfigurer{
         //Asignación de permisos según el rol
         http.authorizeHttpRequests((request) -> request
                 //El ** indica que es todo lo que haya después de /errores/...
-                .requestMatchers("/", "/index", "/errores/**", "/error", "/error/***", "/carrito/**", "/pruebas/**", "/reportes/**", "/registro/**", 
+                .requestMatchers("/", "/index", "/errores/**", "/error", "/error/**", "/carrito/**", "/pruebas/**", "/reportes/**", "/registro/**", 
                         //Estos son las librerías de tipo js y webjars, si esto no se habilita la página levanta sin formato
                         "/js/**", "/webjars/**")
                 .permitAll()
