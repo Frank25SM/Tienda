@@ -108,7 +108,7 @@ public class ProjectConfig implements WebMvcConfigurer{
                 //El ** indica que es todo lo que haya después de /errores/...
                 .requestMatchers("/", "/index", "/errores/**", "/error", "/error/**", "/carrito/**", "/pruebas/**", "/reportes/**", "/registro/**", 
                         //Estos son las librerías de tipo js y webjars, si esto no se habilita la página levanta sin formato
-                        "/js/**", "/webjars/**")
+                        "/js/**", "/webjars/**", "/refrescarBotón")
                 .permitAll()
                 
                 .requestMatchers(
